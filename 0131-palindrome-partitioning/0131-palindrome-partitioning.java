@@ -4,7 +4,6 @@ class Solution {
         dfs(0, result, new ArrayList<String>(), s);
         return result;
     }
-
     void dfs(int start, List<List<String>> result, List<String> currentList, String s) {
         if (start >= s.length()) result.add(new ArrayList<String>(currentList));
         for (int end = start; end < s.length(); end++) {
