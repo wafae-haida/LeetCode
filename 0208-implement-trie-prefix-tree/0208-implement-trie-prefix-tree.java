@@ -1,4 +1,4 @@
-class TrieNode {
+class TrieNode {//O(1) Time & Space
 
     // R links to node children
     private TrieNode[] links;
@@ -31,11 +31,11 @@ class Trie {
     private TrieNode root;
 
     public Trie() {
-        root = new TrieNode();
+        root = new TrieNode();//O(1) Space and Time
     }
 
     // Inserts a word into the trie.
-    public void insert(String word) {
+    public void insert(String word) {// Time: O(m), Space: O(m)->worst case m is the length of the word
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             char currentChar = word.charAt(i);
@@ -46,7 +46,7 @@ class Trie {
         }
         node.setEnd();
     }
-      private TrieNode searchPrefix(String word) {
+      private TrieNode searchPrefix(String word) {// Time: O(m), Space: O(1)->worst case m is the length of the word
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
            char curLetter = word.charAt(i);
@@ -60,12 +60,12 @@ class Trie {
     }
 
     // Returns if the word is in the trie.
-    public boolean search(String word) {
+    public boolean search(String word) {// Time: O(m), Space: O(1)->worst case m is the length of the word
        TrieNode node = searchPrefix(word);
        return node != null && node.isEnd();
     }
-        public boolean startsWith(String prefix) {
+        public boolean startsWith(String prefix) {// Time: O(m), Space: O(1)->worst case m is the length of the word
         TrieNode node = searchPrefix(prefix);
         return node != null;
     }
-}
+}//the whole code taks O(4m)->O(m)Time & Space ^-^
