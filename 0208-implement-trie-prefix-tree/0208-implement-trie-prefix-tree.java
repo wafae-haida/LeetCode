@@ -46,9 +46,7 @@ class Trie {
         }
         node.setEnd();
     }
-     // search a prefix or whole key in trie and
-    // returns the node where search ends
-    private TrieNode searchPrefix(String word) {
+      private TrieNode searchPrefix(String word) {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
            char curLetter = word.charAt(i);
@@ -66,9 +64,7 @@ class Trie {
        TrieNode node = searchPrefix(word);
        return node != null && node.isEnd();
     }
-     // Returns if there is any word in the trie
-    // that starts with the given prefix.
-    public boolean startsWith(String prefix) {
+        public boolean startsWith(String prefix) {
         TrieNode node = searchPrefix(prefix);
         return node != null;
     }
