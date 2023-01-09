@@ -68,4 +68,4 @@ class Trie {
         TrieNode node = searchPrefix(prefix);
         return node != null;
     }
-}//the whole code taks O(4m)->O(m)Time & Space ^-^
+}//the whole code takes O(4m)->O(m)Time & Space ^-^
