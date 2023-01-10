@@ -1,12 +1,11 @@
 class Solution {
     class Node{
-        Node children[]=new Node[26];
-        boolean eow=false;
+        Node children[];
+        boolean eow;
         String word="";
         Node(){
-            for(int i=0;i<26;i++){
-                children[i]=null;
-            }
+          children=new Node[26];
+            eow=false;
         }
     }
     public void insert(String word){
