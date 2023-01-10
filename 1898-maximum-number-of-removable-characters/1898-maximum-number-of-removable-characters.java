@@ -1,20 +1,36 @@
 class Solution {
-   public int maximumRemovals(String s, String p, int[] rem) {
-    int l = 0, r = rem.length;
-    int[] map = new int[s.length()];
-    Arrays.fill(map, rem.length);
-    for (int i = 0; i < rem.length; ++i)
-         map[rem[i]] = i;    
-    while (l < r) {
-        int m = (l + r + 1) / 2, j = 0;
-        for (int i = 0; i < s.length() && j < p.length(); ++i)
-            if (map[i] >= m && s.charAt(i) == p.charAt(j))
-                ++j;
-        if (j == p.length())
-            l = m;
-        else
-            r = m - 1;
+    public int maximumRemovals(String s, String p, int[] removable) {
+        int left = 0;
+        int right = removable.length - 1;
+        while (left <= right) {
+            int mid = left + right >> 1;
+            StringBuffer buffer = new StringBuffer(s);
+			// replace the removeable[i] with ' ' so that we can delete it
+            for (int i = 0; i <= mid; i++) {
+                buffer.setCharAt(removable[i], ' ');
+            }
+			// find out the maximum element using binary search here
+            if (!isSubsequence(buffer.toString(), p)) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return right + 1;
     }
-    return l;
-}
+	
+	// check if p is the subsequence of s
+    private boolean isSubsequence(String s, String p) {
+        int n = p.length();
+        int m = s.length();
+        int i = 0;
+        int j = 0;
+        while (i < n && j < m) {
+            if (p.charAt(i) == s.charAt(j)) {
+                i++;
+            }
+            j++;
+        }
+        return i == n;
+    }
 }
