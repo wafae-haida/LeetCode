@@ -4,10 +4,10 @@ class Solution {
         int right = removable.length - 1;
         while (left <= right) {
             int mid = left + right >> 1;
-            StringBuffer buffer = new StringBuffer(s);
+            StringBuilder buffer = new StringBuilder(s);
 			// replace the removeable[i] with ' ' so that we can delete it
             for (int i = 0; i <= mid; i++) {
-                buffer.setCharAt(removable[i], ' ');
+                buffer.setCharAt(removable[i],' ');
             }
 			// find out the maximum element using binary search here
             if (!isSubsequence(buffer.toString(), p)) {
