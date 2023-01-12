@@ -35,7 +35,7 @@ class Solution {
             }
         List<String>ans=new ArrayList();
         while(pq.size()>0){
-            ans.add(0,pq.remove().val);
+            ans.add(0,pq.poll().val);
         }
         return ans;
 
