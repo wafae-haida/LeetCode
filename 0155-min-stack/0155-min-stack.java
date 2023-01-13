@@ -1,29 +1,33 @@
 class MinStack {
-    Deque<Integer> deque;
-    public MinStack() {
-        deque=new ArrayDeque<>();
-    }
-    
+    Stack<Integer> stack=new Stack<>();
+    Stack<Integer> Minstack=new Stack<>();
     public void push(int val) {
-        deque.addLast(val);
+     //- This Condition will make sure that on top Min Value will be present
+        if (!Minstack.isEmpty() && val<=Minstack.peek()){
+            Minstack.push(val);
+        }
+        else if(Minstack.isEmpty()){
+            Minstack.push(val);
+        }
+        stack.push(val);
     }
     
     public void pop() {
-        deque.removeLast(); 
+        if (Objects.equals(stack.peek(), Minstack.peek())){
+            Minstack.pop();
+        }
+        stack.pop();
     }
     
     public int top() {
-        return deque.getLast();
+        return stack.peek();
     }
     
     public int getMin() {
-        int min=Integer.MAX_VALUE;
-        for(int val:deque){
-            min=Math.min(min,val);
-        }
-        return min;
+        return Minstack.peek();
     }
 }
+
 
 /**
  * Your MinStack object will be instantiated and called as such:
