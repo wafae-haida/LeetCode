@@ -23,7 +23,7 @@ public class Solution {
     
     public int getPerimeter(int[][] grid, int i, int j){
         if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) {return 1;}
-      
+
         if (grid[i][j] == -1) return 0;
         
         int count = 0;
