@@ -15,6 +15,7 @@ class Solution {
             for(int c=0;c<grid[r].length;c++){
                 if(grid[r][c]==1)
                 {
+                    int count=0;
                     ans=Math.max(countArea(grid,r,c,new int[]{0}), ans);
                 }
                   
