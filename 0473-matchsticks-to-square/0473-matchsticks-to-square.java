@@ -15,7 +15,7 @@ class Solution {
         if(index <0 )return true;
         
         for(int i=0;i<4;i++){
-            if((sum[i] + matchsticks[index]>target) || (i>0 && sum[i] == sum[i-1]))continue;
+            if((sum[i] + matchsticks[index]>target))continue;
             
             sum[i]+=matchsticks[index];
             
