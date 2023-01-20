@@ -1,5 +1,6 @@
+
 class Solution{
-    static String ans="";
+     String ans="";
     public String findDifferentBinaryString(String[] nums) {
         HashSet<String> dict=new HashSet<>();
         for(String s:nums)
@@ -8,7 +9,7 @@ class Solution{
         return ans;
     }
     
-    public static boolean solve(int ci,int ti, HashSet<String> dict,String asf){
+    public  boolean solve(int ci,int ti, HashSet<String> dict,String asf){
         if(ci==ti){
             if(!dict.contains(asf)){
                 ans=asf;
