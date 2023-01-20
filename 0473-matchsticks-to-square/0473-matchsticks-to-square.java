@@ -12,7 +12,7 @@ class Solution {
     }
     
     boolean dfs(int[] matchsticks, int sum[], int index,int target){
-        if(index == -1)return true;
+        if(index <0 )return true;
         
         for(int i=0;i<4;i++){
             if((sum[i] + matchsticks[index]>target) || (i>0 && sum[i] == sum[i-1]))continue;
