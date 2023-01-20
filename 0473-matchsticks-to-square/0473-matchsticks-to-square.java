@@ -15,12 +15,13 @@ class Solution {
         if(index <0 )return true;
         
         for(int i=0;i<4;i++){
-            if((sum[i] + matchsticks[index]>target))continue;
             
+            if((sum[i] + matchsticks[index]<=target)){
             sum[i]+=matchsticks[index];
-            
             if(dfs(matchsticks,sum,index-1,target))return true;
             sum[i]-= matchsticks[index];
+            }
+              
         }
         return false;
     }
