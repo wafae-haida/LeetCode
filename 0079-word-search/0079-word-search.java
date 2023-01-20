@@ -1,4 +1,3 @@
-
 class Solution {
 
     public boolean exist(char[][] board, String word) {
@@ -19,12 +18,13 @@ class Solution {
         if (i < 0 ||j < 0 ||i >= m ||j >= n ||board[i][j] != word.charAt(cur)) return false;
         boolean exist = false;
         if (board[i][j] == word.charAt(cur)) {
-            board[i][j]+=10;
+            char preChar=board[i][j];
+            board[i][j]='*';
             exist = check(board, word, i + 1, j, m, n, cur + 1) ||
                     check(board, word, i, j + 1, m, n, cur + 1) ||
                     check(board, word, i - 1, j, m, n, cur + 1) ||
                     check(board, word, i, j - 1, m, n, cur + 1);
-            board[i][j] -= 10;
+            board[i][j] = preChar;
         }
         return exist;
     }
