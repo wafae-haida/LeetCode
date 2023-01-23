@@ -7,25 +7,26 @@
 
 */
 
-class Solution {
-    List<List<Integer>> ans= new ArrayList<List<Integer>>();
-    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        List<Integer> curr=new ArrayList<>();
+class Solution{
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph){
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
         curr.add(0);
-        dfs(graph,0,curr,ans);
+        Queue<List<Integer>> queue= new LinkedList<>();
+        queue.add(curr);
+        while(!queue.isEmpty()){
+            curr=queue.poll();
+            int start= curr.get(curr.size()-1);
+            if(start==graph.length-1){
+                ans.add(curr);
+                continue;
+            }
+            for(int i:graph[start]){
+                List<Integer> temp=new ArrayList<>(curr);
+                temp.add(i);
+                queue.add(temp);
+            }
+        }
         return ans;
-    }
-    public void dfs(int[][] graph,int start,List<Integer> curr,List<List<Integer>> ans){
-        if(start==graph.length-1){
-            ans.add(new ArrayList<>(curr)); 
-            return;
-        }
-        for(int i : graph[start]){
-            curr.add(i);
-            dfs(graph,i,curr,ans);
-            curr.remove(curr.size()-1);
-        }
-        
-        return;
     }
 }
