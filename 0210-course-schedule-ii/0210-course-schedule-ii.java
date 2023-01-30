@@ -1,53 +1,35 @@
 
-
 class Solution {
-
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
-        Map<Integer, List<Integer>> adjList = new HashMap<Integer, List<Integer>>();
-        int[] indegree = new int[numCourses];
-        int[] topologicalOrder = new int[numCourses];
-
-        //creating the adjlist
-        for (int i = 0; i < prerequisites.length; i++) {
-            int post = prerequisites[i][0];
-            int pre = prerequisites[i][1];
-            List<Integer> lst = adjList.getOrDefault(
-                pre,
-                new ArrayList<Integer>()
-            );
-            lst.add(post);
-            adjList.put(pre, lst);
-
-            indegree[post] += 1;
+    public int[] findOrder(int numCourses, int[][] pre) {
+        int[] courseDegree = new int[numCourses];
+        int[] ans =  new int[numCourses];
+        Map<Integer,List<Integer>> adjCourses = new HashMap<>();
+        
+        for(int i=0;i<pre.length;i++){
+            int firstC=pre[i][1];
+            int lastC=pre[i][0];
+            List<Integer> list = adjCourses.getOrDefault(firstC,new ArrayList<Integer>());
+            list.add(lastC);
+            adjCourses.put(firstC,list);
+            courseDegree[lastC]+=1;
         }
-
-        Queue<Integer> q = new LinkedList<Integer>();
-        for (int i = 0; i < numCourses; i++) {
-            if (indegree[i] == 0) {
-                q.add(i);
+        Queue<Integer> bfs = new LinkedList<>();
+        for(int i=0;i<numCourses;i++){
+            if(courseDegree[i]==0)bfs.add(i);
+        }
+        int counter=0;
+        while(!bfs.isEmpty()){
+            int course=bfs.remove();
+            ans[counter++]=course;
+            if(adjCourses.containsKey(course)){
+                for(Integer val : adjCourses.get(course)){
+                courseDegree[val]--;
+                if(courseDegree[val]==0)bfs.add(val);
             }
-        }
-
-        int i = 0;
-        while (!q.isEmpty()) {
-            int node = q.remove();
-            topologicalOrder[i++] = node;
-
-            if (adjList.containsKey(node)) {
-                for (Integer neighbor : adjList.get(node)) {
-                    indegree[neighbor]--;
-
-                    if (indegree[neighbor] == 0) {
-                        q.add(neighbor);
-                    }
-                }
             }
+          
         }
-
-        if (i == numCourses) {
-            return topologicalOrder;
-        }
-
-        return new int[0];
+        if(counter==numCourses)return ans;
+        return new int[]{};
     }
 }
