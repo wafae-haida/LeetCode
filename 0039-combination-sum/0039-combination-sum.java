@@ -1,31 +1,29 @@
 class Solution {
-    List<List<Integer>> ans=new ArrayList<>();
-    public List<List<Integer>> combinationSum(int[] arr, int sum) {
-        Arrays.sort(arr);
-        helper(arr,sum,0,new ArrayList<>());
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        List<Integer> cur = new ArrayList();
+        backtrack(candidates, target, ans, cur, 0);
         return ans;
     }
-    public void helper(int [] arr,int sum,int ind,List<Integer> temp){
-        if(ind==arr.length){
+
+    public void backtrack(
+        int[] candidates,
+        int target,
+        List<List<Integer>> ans,
+        List<Integer> cur,
+        int index
+    ) {
+        if (target == 0) {
+            ans.add(new ArrayList(cur));
+        } else if (target < 0 || index >= candidates.length) {
             return;
+        } else {
+            cur.add(candidates[index]);
+            backtrack(candidates, target - candidates[index], ans, cur, index);
+
+            cur.remove(cur.get(cur.size() - 1));
+            backtrack(candidates, target, ans, cur, index + 1);
         }
-        
-        if(arr[ind]==sum){
-            ArrayList<Integer> temp2=new ArrayList<>();
-            temp2.addAll(temp);
-            temp2.add(arr[ind]);
-            ans.add(temp2);
-            return;
-        }
-        if(arr[ind]>sum){
-            return;
-        }
-        
-        helper(arr,sum,ind+1,temp);
-        
-        ArrayList<Integer> temp2=new ArrayList<>();
-        temp2.addAll(temp);
-        temp2.add(arr[ind]);
-        helper(arr,sum-arr[ind],ind,temp2);
     }
 }
