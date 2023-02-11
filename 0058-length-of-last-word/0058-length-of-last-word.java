@@ -1,3 +1,7 @@
+/*
+T:O(s)
+S:O(1)
+*/
 class Solution {
     public int lengthOfLastWord(String s) {
         int ans=0;
