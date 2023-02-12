@@ -1,3 +1,4 @@
+//T O(m*n), S O(rs)->rs length of the result
 class Solution {
      public String longestCommonPrefix(String[] strs) {
        StringBuilder rs= new StringBuilder();
