@@ -7,7 +7,7 @@ binary search O(logn)
 
 */
 class Solution {
-    public int binarySearch(int[] nums,int i){
+    public int search(int[] nums,int i){
         for(int n=0; n<nums.length; n++){
             if(nums[n]==i){
                 for(int j=n+1; j<nums.length; j++){
@@ -20,7 +20,7 @@ class Solution {
     }
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
        for(int i=0;i<nums1.length;i++){
-           nums1[i]=binarySearch(nums2,nums1[i]);
+           nums1[i]=search(nums2,nums1[i]);
        }
         return nums1;
     }
