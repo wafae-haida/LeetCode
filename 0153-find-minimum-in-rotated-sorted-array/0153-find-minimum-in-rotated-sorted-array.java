@@ -4,7 +4,7 @@ public class Solution {
         while(left<=right){
             if(num[right]>=num[left])
                 return num[left];
-            int mid=(left+right)/2;
+            int mid=left+(right-left)/2;
             if(num[mid]>=num[left])
                 left=mid+1;
             else
