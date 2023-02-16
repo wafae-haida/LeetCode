@@ -1,18 +1,3 @@
-/*
-"E",k=0
-"EXMPLE",kmax=s.length
-"EAE"
-return an integer
-
-    Solution:
-        List<Character> sub;
-        add [i]
-        if[i]!=[i-1]curr=i-1
-        add[i-1]
-        k--
-        k==0
-        ans=Math.max(ans,sub.size())
-*/
 class Solution {
     public int characterReplacement(String s, int k) {
 	    int[] dic=new int[26];
