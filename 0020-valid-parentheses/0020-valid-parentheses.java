@@ -1,29 +1,35 @@
+/*
+Understanding:
+    "((}}[{)}]))"
+    ({)}->false
+    {}
+    []
+Target:
+    return true or false
+Solution:
+    dic:Key(->value-> )
+        Key{->value-> }
+        Key[->value-> ]
+    check->left then ->right ...store->left then ->right
+*/
 class Solution {
     public boolean isValid(String s) {
-        // Create hashmap to store the pairs...
-        HashMap<Character, Character> Hmap = new HashMap<Character, Character>();
-        Hmap.put(')','(');
-        Hmap.put('}','{');
-        Hmap.put(']','[');
-        // Create stack data structure...
-        Stack<Character> stack = new Stack<Character>();
-        // Traverse each charater in input string...
-        for (int idx = 0; idx < s.length(); idx++){
-            // If open parentheses are present, push it to stack...
-            if (s.charAt(idx) == '(' || s.charAt(idx) == '{' || s.charAt(idx) == '[') {
-                stack.push(s.charAt(idx));
-                continue;
-            }
-            // If the character is closing parentheses, check that the same type opening parentheses is being pushed to the stack or not...
-            // If not, we need to return false...
-            if (stack.size() == 0 || Hmap.get(s.charAt(idx)) != stack.pop()) {
-                return false;
-            }
+        Map<Character,Character> dic=new HashMap<>();
+        Stack<Character> stack=new Stack<>();
+        dic.put(')','(');
+        dic.put(']','[');
+        dic.put('}','{');
+        for(char c:s.toCharArray()){
+            if(dic.containsKey(c)){
+                if(!stack.isEmpty() && dic.get(c)==stack.peek()){
+                    stack.pop();
+                }else
+                    return false;
+            }else
+                stack.push(c);
         }
-        // If the stack is empty, return true...
-        if (stack.size() == 0) {
+        if(stack.isEmpty())
             return true;
-        }
         return false;
     }
 }
