@@ -28,8 +28,6 @@ Solution:
 */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if(head==null || head.next==null)
-            return false;
         Set<ListNode> visited=new HashSet<>();
         ListNode cur=head;
         while(cur!=null){
