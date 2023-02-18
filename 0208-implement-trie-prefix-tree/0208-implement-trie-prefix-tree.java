@@ -1,71 +1,54 @@
-class TrieNode {//O(1) Time & Space
+/*
+Understanding:
+    Trie store and retrieve keys
+    Questions:
+    
+Target:
 
-    // R links to node children
-    private TrieNode[] links;
+Solution:
 
-    private final int R = 26;
 
-    private boolean isEnd;
-
-    public TrieNode() {
-        links = new TrieNode[R];
+*/
+class Trie{
+    Trie[] children;
+    boolean isEnd;
+    public Trie(){
+        children=new Trie[26];
+        isEnd=false;
     }
-
-    public boolean containsKey(char ch) {
-        return links[ch -'a'] != null;
+    public void insert(String word){
+        Trie cur=this;
+        for(char c:word.toCharArray()){
+            if(cur.children[c-'a']==null)
+                cur.children[c-'a']=new Trie();
+            cur=cur.children[c-'a'];
+        }
+        cur.isEnd=true;
     }
-    public TrieNode get(char ch) {
-        return links[ch -'a'];
+    public boolean search(String word){
+        Trie cur=this;
+        for(char c:word.toCharArray()){
+            if(cur.children[c-'a']==null)
+                return false;
+            cur=cur.children[c-'a'];
+        }
+        return cur.isEnd;
     }
-    public void put(char ch, TrieNode node) {
-        links[ch -'a'] = node;
-    }
-    public void setEnd() {
-        isEnd = true;
-    }
-    public boolean isEnd() {
-        return isEnd;
+    public boolean startsWith(String prefix){
+        Trie cur=this;
+        for(char c:prefix.toCharArray()){
+            if(cur.children[c-'a']==null)
+                return false;
+            cur=cur.children[c-'a'];
+        }
+        return true;
     }
 }
-class Trie {
-    private TrieNode root;
 
-    public Trie() {
-        root = new TrieNode();//O(1) Space and Time
-    }
-
-    // Inserts a word into the trie.
-    public void insert(String word) {// Time: O(m), Space: O(m)->worst case m is the length of the word
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            if (!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode());
-            }
-            node = node.get(currentChar);
-        }
-        node.setEnd();
-    }
-      private TrieNode searchPrefix(String word) {// Time: O(m), Space: O(1)->worst case m is the length of the word
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-           char curLetter = word.charAt(i);
-           if (node.containsKey(curLetter)) {
-               node = node.get(curLetter);
-           } else {
-               return null;
-           }
-        }
-        return node;
-    }
-
-    // Returns if the word is in the trie.
-    public boolean search(String word) {// Time: O(m), Space: O(1)->worst case m is the length of the word
-       TrieNode node = searchPrefix(word);
-       return node != null && node.isEnd();
-    }
-        public boolean startsWith(String prefix) {// Time: O(m), Space: O(1)->worst case m is the length of the word
-        TrieNode node = searchPrefix(prefix);
-        return node != null;
-    }
-}//the whole code takes O(4m)->O(m)Time & Space ^-^
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
