@@ -39,13 +39,13 @@ secCur=secCur.next
 */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists.length == 0) return null; // Return null instead of an empty ListNode object
+        if(lists.length == 0) return null;
         return merge(lists, 0, lists.length - 1);
     }
     
     private ListNode merge(ListNode[] lists, int left, int right) {
-        if(left == right) return lists[left]; // If only one list is left, return it
-        int mid = (left + right) / 2;
+        if(left == right) return lists[right]; 
+        int mid = left+(right-left)/ 2;
         ListNode leftList = merge(lists, left, mid);
         ListNode rightList = merge(lists, mid + 1, right);
         return mergeTwoLists(leftList, rightList);
