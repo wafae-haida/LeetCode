@@ -14,18 +14,13 @@
  * }
  */
 /*
-root=3;preorder = [3,9,20,15,7]; inorder = [9,3,15,20,7];mid=1
-root=9;preorder = [9,20];inorder=[9,3];mid=0
-root=20;preorder = [20];inorder=[9];mid=0
-20.left=null
-20.right=null
-9.left=20
-9.right=
-
+preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+preorder=root->left->right
+inorder=left->root->right
 */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder.length==0 || inorder.length==0) return null;
+        if(preorder.length==0 || inorder.length==0)return null;
         TreeNode root=new TreeNode(preorder[0]);
         int mid=0;
         for(int i=0;i<inorder.length;i++){
