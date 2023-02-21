@@ -15,20 +15,15 @@
  */
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
-        Queue<Integer> minHeap=new PriorityQueue<>();
-        trTreeToList(root,minHeap);
-        int ans=0;
-        while(k>0){
-            ans=minHeap.poll();
-            k--;
-        }
-        return ans;
+        List<Integer> ans=new ArrayList<>();
+        trTreeToList(root,ans);
+        return ans.get(k-1);//0-indexes
     }
-    public void trTreeToList(TreeNode root, Queue<Integer> minHeap){
+    public void trTreeToList(TreeNode root, List<Integer> list){
         if(root==null)
             return;
-        minHeap.add(root.val);
-        trTreeToList(root.left,minHeap);
-        trTreeToList(root.right,minHeap);
+        trTreeToList(root.left,list);
+        list.add(root.val);
+        trTreeToList(root.right,list);
     }
 }
