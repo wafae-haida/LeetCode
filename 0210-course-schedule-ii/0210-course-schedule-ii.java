@@ -28,7 +28,7 @@ class Solution {
 
         int i = 0;
         while (!q.isEmpty()) {
-            int node = q.poll();
+            int node = q.remove();
             topologicalOrder[i++] = node;
 
             if (adjList.containsKey(node)) {
