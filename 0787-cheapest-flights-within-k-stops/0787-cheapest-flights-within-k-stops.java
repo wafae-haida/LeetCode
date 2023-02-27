@@ -17,8 +17,7 @@ class Solution {
 
         for (int i = 0; i <= k; i++) {
             // make a copy of prices
-            int[] temp = new int[n];
-            temp = Arrays.copyOf(prices, prices.length);
+            int[] temp = Arrays.copyOf(prices,n);
 
             // loop through flights
             for (int j = 0; j < flights.length; j++) {
@@ -26,23 +25,17 @@ class Solution {
                 int d = flights[j][1]; // to
                 int p = flights[j][2]; // price
 
-                if (prices[s] == Integer.MAX_VALUE) {
-                    continue;
-                }
-
-                if (prices[s] + p < temp[d]) {
+                if (prices[s] != Integer.MAX_VALUE && prices[s] + p < temp[d])
                     temp[d] = prices[s] + p;
-                }
+                
             }
 
-            // set prices to temp
             prices = temp;
         }
 
-        if (prices[dst] != Integer.MAX_VALUE) {
+        if (prices[dst] != Integer.MAX_VALUE)
             return prices[dst];
-        }
-
+       
         return -1;
     }
 }
