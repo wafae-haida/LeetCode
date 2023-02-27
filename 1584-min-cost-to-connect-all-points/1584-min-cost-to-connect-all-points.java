@@ -10,9 +10,8 @@ class Solution {
             int[] arr = minHeap.poll();
             int tmp = arr[0];
             int point = arr[1];
-            if(visited.contains(point))
+            if(!visited.add(point))
                 continue;
-            visited.add(point);
             cost += tmp;
             for(int i = 0 ; i < points.length ; i++){
                 if(!visited.contains(i)){
