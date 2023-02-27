@@ -18,6 +18,6 @@ class Solution {
         return findParent(parent[node-1]);
     }
     public void union(int firstNode,int secondNode){
-        parent[findParent(secondNode)-1] = findParent(firstNode);
+        parent[findParent(firstNode)-1] = findParent(secondNode);
     }
 }
