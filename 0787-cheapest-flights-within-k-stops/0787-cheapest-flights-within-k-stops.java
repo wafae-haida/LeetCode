@@ -19,7 +19,7 @@ class Solution {
                 int d = flights[j][1]; // to
                 int p = flights[j][2]; // price
 
-                if (prices[s] != Integer.MAX_VALUE && temp[s] + p < temp[d])
+                if (prices[s] != Integer.MAX_VALUE && prices[s] + p < temp[d])
                     temp[d] = prices[s] + p;
                 
             }
