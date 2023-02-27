@@ -1,13 +1,7 @@
 // Time Complexity O(k * n) | Space Complexity O(n)
 class Solution {
 
-    public int findCheapestPrice(
-        int n,
-        int[][] flights,
-        int src,
-        int dst,
-        int k
-    ) {
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
         // initialize an array with max value of size n
         int[] prices = new int[n];
         Arrays.fill(prices, Integer.MAX_VALUE);
