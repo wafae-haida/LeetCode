@@ -1,31 +1,26 @@
 class Solution {
-
     public boolean exist(char[][] board, String word) {
-        int m = board.length;
-        int n = board[0].length;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (check(board, word, i, j, m, n, 0)) {
+        for(int r = 0 ; r < board.length ; r++){
+             for(int c = 0 ; c < board[r].length ; c++){
+                if(backtrack(board, word, 0, r, c))
                     return true;
-                }
-            }
-        }
+             }
+         }
         return false;
     }
-
-    public boolean check(char[][] board,String word,int i,int j,int m,int n,int cur) {
-        if (cur >= word.length()) return true;
-        if (i < 0 ||j < 0 ||i >= m ||j >= n ||board[i][j] != word.charAt(cur)) return false;
+    public boolean backtrack(char[][] board, String word, int indx, int r, int c){
+        if(indx == word.length())
+            return true;
+        if(r < 0 || c < 0 || r == board.length || c == board[r].length || board[r][c] != word.charAt(indx))
+            return false;
         boolean exist = false;
-        if (board[i][j] == word.charAt(cur)) {
-            char preChar=board[i][j];
-            board[i][j]='*';
-            exist = check(board, word, i + 1, j, m, n, cur + 1) ||
-                    check(board, word, i, j + 1, m, n, cur + 1) ||
-                    check(board, word, i - 1, j, m, n, cur + 1) ||
-                    check(board, word, i, j - 1, m, n, cur + 1);
-            board[i][j] = preChar;
-        }
+        if(board[r][c] == word.charAt(indx))
+            board[r][c] += 100;
+        exist = backtrack(board, word, indx + 1, r + 1, c)
+        || backtrack(board, word, indx + 1, r - 1, c)
+        || backtrack(board, word, indx + 1, r, c + 1)
+        || backtrack(board, word, indx + 1, r, c - 1);
+        board[r][c] -= 100;
         return exist;
     }
 }
