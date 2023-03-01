@@ -5,7 +5,7 @@ class Solution {
         return ans;
     }
     public void backtrack(String s, List<String> list,String cur, int start, List<List<String>> ans){
-        if(start >= s.length())
+        if(start == s.length())
             ans.add(new ArrayList<>(list));
         for(int i = start; i < s.length(); i++){
             cur = s.substring(start, i + 1);
