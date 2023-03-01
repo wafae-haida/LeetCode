@@ -1,37 +1,23 @@
-// Go Through Subset 2 & Combination Sum 1
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> subset = new ArrayList<>();
-        int sum = 0;
         Arrays.sort(candidates);
-        helper(0,candidates,target,sum,ans,subset);
+        backtrack(candidates, target, 0, new ArrayList<>(), ans);
         return ans;
     }
-    void helper(int start,int[] candidate,int target,int sum,List<List<Integer>> ans, List<Integer> subset)
-    {
-        if(sum==target)
-        {
-            ans.add(new ArrayList(subset));
+    public void backtrack(int[] nums, int target, int start, List<Integer> list, List<List<Integer>> ans){
+        if(target < 0)
+            return;
+        if(target == 0){
+            ans.add(new ArrayList<>(list));
             return;
         }
-        
-        if(start>=candidate.length)
-            return;
-        
-        if(sum>target)
-            return;
-        
-        //include
-        sum+=candidate[start];
-        subset.add(candidate[start]);
-        helper(start+1,candidate,target,sum,ans,subset);
-        
-        //exclude
-        sum-=candidate[start];
-        subset.remove(subset.size()-1);
-        while(start+1<candidate.length && candidate[start]==candidate[start+1])
-            start++;
-        helper(start+1,candidate,target,sum,ans,subset);
+        for(int i = start ; i < nums.length; i++){
+            if(i != start && nums[i] == nums[i-1])
+                continue;
+            list.add(nums[i]);
+            backtrack(nums, target - nums[i], i + 1, list, ans);
+            list.remove(list.size() - 1);
+        }
     }
 }
