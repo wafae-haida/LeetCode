@@ -15,12 +15,12 @@ class Solution {
             return false;
         boolean exist = false;
         if(board[r][c] == word.charAt(indx))
-            board[r][c] += 100;
+            board[r][c] += 101;
         exist = backtrack(board, word, indx + 1, r + 1, c)
         || backtrack(board, word, indx + 1, r - 1, c)
         || backtrack(board, word, indx + 1, r, c + 1)
         || backtrack(board, word, indx + 1, r, c - 1);
-        board[r][c] -= 100;
+        board[r][c] -= 101;
         return exist;
     }
 }
