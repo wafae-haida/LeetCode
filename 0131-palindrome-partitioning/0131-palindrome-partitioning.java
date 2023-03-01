@@ -1,26 +1,33 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> result = new ArrayList<List<String>>();
-        dfs(0, result, new ArrayList<String>(), s);
-        return result;
+        List<List<String>> ans = new ArrayList<>();
+        backtrack(s, new ArrayList<>(), new String(), 0, ans);
+        return ans;
     }
-    void dfs(int start, List<List<String>> result, List<String> currentList, String s) {
-        if (start >= s.length()) result.add(new ArrayList<String>(currentList));
-        for (int end = start; end < s.length(); end++) {
-            if (isPalindrome(s, start, end)) {
-                // add current substring in the currentList
-                currentList.add(s.substring(start, end + 1));
-                dfs(end + 1, result, currentList, s);
-                // backtrack and remove the current substring from currentList
-                currentList.remove(currentList.size() - 1);
+    public void backtrack(String s, List<String> list,String cur, int start, List<List<String>> ans){
+        if(start >= s.length())
+            ans.add(new ArrayList<>(list));
+        for(int i = start; i < s.length(); i++){
+            cur = s.substring(start, i + 1);
+            if(isPalindrom(cur)){
+                list.add(cur);
+                backtrack(s, list, cur, i + 1, ans);
+                list.remove(list.size() - 1);
             }
-        }
-    }
+        }  
 
-    boolean isPalindrome(String s, int low, int high) {
-        while (low < high) {
-            if (s.charAt(low++) != s.charAt(high--)) return false;
+    }
+    public boolean isPalindrom(String str){
+        int left = 0;
+        int right = str.length()-1;
+        while(left < right){
+            if(str.charAt(left) == str.charAt(right)){
+                left++;
+                right--;
+            }else{
+                return false;
+            }   
         }
         return true;
-    }
+    } 
 }
