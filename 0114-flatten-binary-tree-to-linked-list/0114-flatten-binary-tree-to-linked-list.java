@@ -20,8 +20,8 @@ class Solution {
     public TreeNode dfs(TreeNode root, TreeNode pre){
         if(root == null)
             return pre;
-        TreeNode right = dfs(root.right,pre);
-        TreeNode left = dfs(root.left,right);
+        TreeNode right =  dfs(root.right,pre);
+        TreeNode left =  dfs(root.left,right);
         root.right = left;
         root.left = null;
         return root;
