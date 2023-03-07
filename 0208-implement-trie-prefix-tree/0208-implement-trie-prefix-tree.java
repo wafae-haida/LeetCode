@@ -1,14 +1,3 @@
-/*
-Understanding:
-    Trie store and retrieve keys
-    Questions:
-    
-Target:
-
-Solution:
-
-
-*/
 class Trie{
     Trie[] children;
     boolean isEnd;
