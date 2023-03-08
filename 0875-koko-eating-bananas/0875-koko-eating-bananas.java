@@ -13,6 +13,6 @@ class Solution {
             else
                 left = k + 1;
         }
-        return right;
+        return left;
     }
 }
