@@ -18,7 +18,7 @@ class Solution {
         ListNode cur = prev.next;
         for(int i = 0; i < right - left;i++){
             ListNode forw = cur.next;
-            cur.next = forw.next;
+            cur.next = cur.next.next;
             forw.next = prev.next;
             prev.next = forw;
             
