@@ -20,9 +20,8 @@ class Trie{
         for(char c : searchWord.toCharArray()){
             if(cur.children[c - 'a'] != null){
                 cur = cur.children[c - 'a'];
-            } else {
+            } else 
                 return new ArrayList<>();
-            }
         }
         traverse(cur, searchWord, lst);
         return lst;
@@ -49,7 +48,7 @@ class Solution {
         String sch = "";
         for(char c :searchWord.toCharArray()){
             sch += c;
-            List<String> lst = tr.search_Word(sch); // corrected line
+            List<String> lst = tr.search_Word(sch);
             ans.add(lst);
         }
         return ans;
