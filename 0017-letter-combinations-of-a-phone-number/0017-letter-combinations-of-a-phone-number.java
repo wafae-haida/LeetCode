@@ -1,19 +1,21 @@
-public class Solution {
+class Solution {
     public List<String> letterCombinations(String digits) {
-        List<String> res = new ArrayList<String>();
-        if (digits == null || digits.length() == 0) return res;
-        res.add("");
-        String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        for (int i = 0; i < digits.length(); i++){
-            List<String> newRes = new ArrayList<String>();
-            char[] charArray= mapping[digits.charAt(i) - '0'].toCharArray();
-            for (String str : res){
-                for (char c : charArray){
-                    newRes.add(new String(str + c));
-                }
-            }
-            res = newRes;
-        }
+        if(digits.length() == 0 || digits == null)
+            return new ArrayList<>();
+        String[] map = {"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String> res = new ArrayList<>();
+        bcaktrack(digits,map,0, new StringBuilder(), res);
         return res;
+    }
+    public void bcaktrack(String digits, String[] map,int start, StringBuilder cur, List<String> res){
+        if(start == digits.length()){
+            res.add(cur.toString());
+            return;
+        }
+        for(char c : map[digits.charAt(start) - '0'].toCharArray()){
+            cur.append(c);
+            bcaktrack(digits,map,start + 1, cur, res);
+            cur.deleteCharAt(cur.length() - 1);
+        }
     }
 }
