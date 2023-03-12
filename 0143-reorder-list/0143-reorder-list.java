@@ -8,57 +8,42 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-/*
-Understanding:
-------
-    1
-        Result:
-            1.
-    ---
-    2->1
-        Result:
-            2->1.
-    ---
-    5->3->10->5->100
-        Result:
-            5->100->3->5->10.
-    Questions:
-    What is the range of the lenght of the input? at least we have a node which means the first node is not null
-    Am I supposed to ignore the values and care about the position first->end->nextfirst->preend->...
-    
-Target:
-    0->...->n
-    0->n->1->n-1->....
-    Don't return anything just reorder the input in the following way.
-
-Solution:
-    I will use Recursion:
-        The base case is if head.next==null
-
-*/
 class Solution {
-    public void reorderList(ListNode head){
-        List<ListNode> listNode=new ArrayList<>();
-        ListNode cur=head;
-        while(cur!=null){
-            listNode.add(cur);
-            cur=cur.next;
+    public void reorderList(ListNode head) {
+        if(head == null || head.next == null) {
+            return;
         }
-        int left=0,right=listNode.size()-1;
-        List<ListNode> listRes=new ArrayList<>();
-        while(left<=right){
-            listRes.add(listNode.get(left));
-            listRes.add(listNode.get(right));
-            left++;
-            right--;
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        // find the middle node of the list
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        ListNode tmp=null;
-        for(int i=0;i<listRes.size()-1;i++){
-            head=tmp;
-            tmp=listRes.get(i);
-            tmp.next=null;
-            tmp.next=listRes.get(i+1);
-            tmp.next.next=null;
+        
+        // reverse the second half of the list
+        ListNode prev = null;
+        ListNode cur = slow.next;
+        slow.next = null;
+        while(cur != null) {
+            ListNode temp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = temp;
+        }
+        
+        // merge the two halves of the list
+        ListNode p1 = head;
+        ListNode p2 = prev;
+        while(p2 != null) {
+            ListNode temp1 = p1.next;
+            ListNode temp2 = p2.next;
+            p1.next = p2;
+            p2.next = temp1;
+            p1 = temp1;
+            p2 = temp2;
         }
     }
 }
