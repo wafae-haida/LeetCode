@@ -6,7 +6,7 @@ class Solution {
         prefixSum = new int[w.length];
         prefixSum[0] = w[0];
         for (int i = 1; i < w.length; i++) {
-            prefixSum[i] = prefixSum[i-1] + w[i];
+            prefixSum[i] = prefixSum[i - 1] + w[i];
         }
         rand = new Random();
     }
