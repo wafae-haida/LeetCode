@@ -9,9 +9,8 @@ class Solution {
         while (f < firstList.length && s < secondList.length) {
             int startMax = Math.max(firstList[f][0], secondList[s][0]);
             int endMin = Math.min(firstList[f][1], secondList[s][1]);
-            if (startMax <= endMin) {
-                ans.add(new int[] { startMax, endMin });
-            }
+            if (startMax <= endMin) 
+                ans.add(new int[]{startMax,endMin});
             if (firstList[f][1] < secondList[s][1]) {
                 f++;
             } else {
