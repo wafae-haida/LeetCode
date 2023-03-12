@@ -1,27 +1,31 @@
 class Solution {
-    int[] idx;
+    int[] prefixSum;
+    Random rand;
+    
     public Solution(int[] w) {
-        
-        for(int i = 1 ; i < w.length; i++)
-            w[i] += w[i-1];
-        
-        double sum = w[w.length - 1];
-        double[] pb = new double[w.length]; 
-        
-        for(int i = 0 ; i < w.length; i++)
-            pb[i] = w[i]*1000/sum;
-        
-        idx = new int[1000];
-        int k = 0;
-        for(int i = 0 ; i < w.length; i++)
-            while(k<pb[i])
-                idx[k++] = i;
+        prefixSum = new int[w.length];
+        prefixSum[0] = w[0];
+        for (int i = 1; i < w.length; i++) {
+            prefixSum[i] = prefixSum[i-1] + w[i];
+        }
+        rand = new Random();
     }
     
     public int pickIndex() {
-        return idx[(int) (Math.random() * 1000)];
+        int target = rand.nextInt(prefixSum[prefixSum.length-1]) + 1;
+        int left = 0, right = prefixSum.length - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (prefixSum[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
     }
 }
+
 
 /**
  * Your Solution object will be instantiated and called as such:
