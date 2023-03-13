@@ -1,42 +1,34 @@
-public class Solution {
-
+class Solution {
     public List<String> restoreIpAddresses(String s) {
-        List<String> ls = new ArrayList<String>();
-        helper(s,ls,4,"");
-        return ls;
+        List<String> ans = new ArrayList<>();
+        dfs(s,4,"",ans);
+        return ans;
     }
-	
-    private void helper(String s,List<String> ls,int dep,String res){
-        int len = s.length();
-        if(len>dep*3 || len<dep){
-            return; //String too large or too small
-        } 
-        
-        if(dep==1){
+    public void dfs(String s, int spot, String cur, List<String> ans){
+        if(s.length() > 3 * spot || s.length() < spot)
+            return;
+        if(spot == 1){
             if(isValid(s)){
-               res += "." + s;
-               ls.add(res);
+                cur += '.' + s;
+                ans.add(cur);
             }
             return;
         }
-        
-        for(int i=0;i<len-(dep-1);i++){
-            String sub = s.substring(0,i+1);
-            if(isValid(sub)){
-                if(dep!=4){
-                    helper(s.substring(i+1),ls,dep-1,res+"."+sub);
-                } else {
-                    helper(s.substring(i+1),ls,dep-1,sub);
+        for(int  i = 0 ;i < s.length() - (spot - 1); i++){
+            String tmp = s.substring(0,i+1);
+            if(isValid(tmp)){
+                if(spot != 4){
+                    dfs(s.substring(i+1), spot - 1,cur + '.' + tmp,ans);
+                }else{
+                    dfs(s.substring(i+1), spot - 1, tmp, ans);
                 }
             }
         }
     }
-    
-    private boolean isValid(String num){
-        int val = Integer.valueOf(num);
-        if(val >=0 && val <=255){
-            return String.valueOf(val).length() == num.length(); // Additionally verify if there are no leading zeros
-        }
-        return false;  
+    public boolean isValid(String tmp){
+        int num = Integer.valueOf(tmp);
+        if(num >= 0 && num <= 255)
+            return String.valueOf(num).length() == tmp.length();
+        return false;
     }
 }
