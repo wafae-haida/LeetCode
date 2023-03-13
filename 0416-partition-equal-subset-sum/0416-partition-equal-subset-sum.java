@@ -10,7 +10,7 @@ class Solution {
         
         sum /= 2;
         
-        mem = new Boolean[n][sum+1];
+        mem = new Boolean[n][sum + 1];
         
         return subsetSum(nums,0,sum);
     }
