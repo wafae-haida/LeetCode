@@ -9,7 +9,7 @@ class Solution {
             adj.get(prerequisites[i][0]).add(prerequisites[i][1]);
         
         for(int i = 0 ; i < numCourses; i++){
-            if(visited[i] == 0 && isCycle(visited,adj,i))
+            if(isCycle(visited,adj,i))
                 return false;
         }
        return true;
