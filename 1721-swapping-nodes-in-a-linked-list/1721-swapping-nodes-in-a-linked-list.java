@@ -14,7 +14,7 @@ class Solution {
         ListNode slow = head;
         ListNode first = null;
         
-        for(int i = 0; i < k - 1; ++i)
+        for(int i = 1; i < k ; ++i)
             fast = fast.next;
             
         first = fast;
