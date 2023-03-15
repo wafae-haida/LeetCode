@@ -15,29 +15,18 @@
  */
 class Solution {
     public boolean isCompleteTree(TreeNode root) {
-        
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.offer( root );
-        
-        TreeNode prevNode = root;
-        
-        // Launch level-order traversal
-        while( queue.size() > 0 ){
-            
-            TreeNode curNode = queue.poll();
-            
-            if( curNode != null ){
-                
-                if( prevNode == null ){
-                    // Empty node in the middle means this is not a complete binary tree ( not left-compact)
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        TreeNode pre = root;
+        while(!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            if(node != null){
+                if(pre == null)
                     return false;
-                }
-                
-                queue.offer( curNode.left );
-                queue.offer( curNode.right );
+                queue.add(node.left);
+                queue.add(node.right);
             }
-            // udpate previous node
-            prevNode = curNode;
+            pre = node;
         }
         return true;
     }
