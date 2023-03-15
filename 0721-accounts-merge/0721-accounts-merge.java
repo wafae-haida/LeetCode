@@ -10,9 +10,9 @@ class DSU{
         }
     }
    int find(int a){
-        if(a != parent[a])
-            parent[a] = find(parent[a]);
-        return parent[a];
+        if(a == parent[a])
+            return a;
+        return find(parent[a]);
     }
 
     void union(int a, int b){
