@@ -1,9 +1,5 @@
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-        if (matrix == null || k <= 0) {
-            throw new IllegalArgumentException("Input is invalid");
-        }
-
         int n = matrix.length;
        
         if (k == 1) {
