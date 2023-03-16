@@ -5,9 +5,6 @@ class Solution {
         if (k == 1) {
             return matrix[0][0];
         }
-        if (k == n * n) {
-            return matrix[n - 1][n - 1];
-        }
 
         PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> (matrix[a[0]][a[1]] - matrix[b[0]][b[1]]));
 
