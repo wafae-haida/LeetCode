@@ -3,7 +3,6 @@ class Solution {
         s = s.toLowerCase();
         s = s.replaceAll("[^a-z0-9]", "").replaceAll("\\s","");
         int left = 0, right = s.length()-1;
-        System.out.print(s);
         while(left < right){
             if(s.charAt(left) != s.charAt(right))
                 return false;
