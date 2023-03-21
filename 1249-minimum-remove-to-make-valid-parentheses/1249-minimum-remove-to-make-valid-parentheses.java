@@ -16,7 +16,7 @@ class Solution {
             }
         }
         StringBuilder sb = new StringBuilder();
-        Set<Integer> set = new HashSet<>(stack);
+        List<Integer> set = new ArrayList<>(stack);
         for(int i = 0 ; i < s.length() ; i++)
             if(!set.contains(i))
                 sb.append(s.charAt(i));
