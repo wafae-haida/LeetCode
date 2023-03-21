@@ -6,7 +6,7 @@ class Solution {
             if(nums[i] < second_max)
                 return true;
             while(!stack.isEmpty() && nums[i] > stack.peek()){
-                second_max = stack.pop();
+                second_max = Math.max(second_max, stack.pop());
             }   
            stack.push(nums[i]);
         }
