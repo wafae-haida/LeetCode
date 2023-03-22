@@ -2,8 +2,8 @@ class Solution {
     public double new21Game(int N, int K, int W) {
         double[] dp = new double[N + W + 1];
         // dp[x] = the answer when Alice has x points
-        for (int k = K; k <= N; ++k)
-            dp[k] = 1.0;
+        for (int i = K; i <= N; ++i)
+            dp[i] = 1.0;
 
         double S = Math.min(N - K + 1, W);
         // S = dp[k+1] + dp[k+2] + ... + dp[k+W]
