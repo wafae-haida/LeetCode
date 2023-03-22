@@ -25,7 +25,7 @@ class SnapshotArray {
         Integer value = map.get(snap_id);
         if(value != null)
             return value;
-        int resId = Integer.MIN_VALUE;
+int resId = Integer.MIN_VALUE;
         int resValue = 0;
         for(Map.Entry<Integer,Integer> m : map.entrySet()){
             if(resId < m.getKey() && m.getKey() < snap_id){
@@ -34,8 +34,7 @@ class SnapshotArray {
             }
                 
         }
-        return resValue;
-    }
+        return resValue;    }
 }
 
 /**
