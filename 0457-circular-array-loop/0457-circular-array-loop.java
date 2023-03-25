@@ -26,15 +26,8 @@ class Solution{
 	}
 
 	public static int nextStep(int[] nums, int currentIndex, boolean currentDirection) {
-
-		boolean nextDirection = false;
+		boolean nextDirection = nums[currentIndex] >= 0;
 		int findStep;
-
-		if (nums[currentIndex] >= 0) {
-			nextDirection = true;
-		}
-		else
-		    nextDirection = false;
 		if (nextDirection != currentDirection || nums[currentIndex] % nums.length == 0) {
 			return -1;
 		}
