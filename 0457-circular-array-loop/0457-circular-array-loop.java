@@ -1,29 +1,55 @@
-class Solution {
-    public boolean circularArrayLoop(int[] nums) {
-        for(int i = 0 ; i < nums.length ; i++){
-            boolean isForword = nums[i]>=0;
-            int fast = i, slow = i;
-            do{
-                slow = findNextIndex(nums,isForword,slow);
-                fast = findNextIndex(nums,isForword,fast);
-                if(fast != -1)
-                    fast = findNextIndex(nums,isForword,fast);
-            }while(fast != -1 && slow != -1 && fast!=slow);
-            if(fast != -1 && fast == slow)
-                return true;
-        }
-        return false;
-    }
-    public int findNextIndex(int[] nums, boolean isForword, int idx){
-        boolean direction = nums[idx] >= 0;
-        int res = 0;
-        if(direction != isForword)
-            return -1;
-        res = (nums[idx] + idx) % nums.length;
-        if(res < 0)
-            res += nums.length;
-        if(res == idx)
-            return -1;
-        return res;
-    }
+class Solution{
+	public static boolean circularArrayLoop(int[] nums) {
+
+   		boolean currentDirection = false;
+		int slowPtr = 0;
+		int fastPtr = 0;
+		for (int i = 0; i<nums.length; i++) {
+			if(nums[i] %nums.length == 0)
+			    continue;
+			if (nums[i] >= 0) {
+				currentDirection = true;
+			}
+			else
+			    currentDirection = false;
+			slowPtr = i;
+			fastPtr = i;
+
+			while (slowPtr != fastPtr || slowPtr != -1 || fastPtr != -1) {
+				slowPtr = nextStep(nums, slowPtr, currentDirection);
+				if(slowPtr == -1)
+				    break;
+				fastPtr = nextStep(nums, fastPtr, currentDirection);
+				if (fastPtr != -1) {
+					fastPtr = nextStep(nums, fastPtr, currentDirection);
+				}
+				if (fastPtr == -1 || slowPtr == fastPtr) {
+					break;
+				}
+			}
+			if (slowPtr == fastPtr && slowPtr != -1) 
+			    return true;
+		}
+		return false;
+	}
+
+	public static int nextStep(int[] nums, int currentIndex, boolean currentDirection) {
+
+		boolean nextDirection = false;
+		int findStep;
+
+		if (nums[currentIndex] >= 0) {
+			nextDirection = true;
+		}
+		else
+		    nextDirection = false;
+		if (nextDirection != currentDirection || nums[currentIndex] % nums.length == 0) {
+			return -1;
+		}
+		findStep = currentIndex + nums[currentIndex];
+		findStep = findStep % nums.length;
+		if(findStep < 0)
+            findStep = findStep + nums.length;
+		return findStep;
+	}
 }
