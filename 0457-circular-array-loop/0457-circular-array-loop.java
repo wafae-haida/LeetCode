@@ -28,7 +28,7 @@ class Solution{
 	public static int nextStep(int[] nums, int currentIndex, boolean currentDirection) {
 		boolean nextDirection = nums[currentIndex] >= 0;
 		int findStep;
-		if (nextDirection != currentDirection || nums[currentIndex] % nums.length == 0) {
+		if (nextDirection ^ currentDirection || nums[currentIndex] % nums.length == 0) {
 			return -1;
 		}
 		findStep = currentIndex + nums[currentIndex];
