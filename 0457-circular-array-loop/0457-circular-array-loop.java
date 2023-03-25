@@ -1,19 +1,11 @@
 class Solution{
 	public static boolean circularArrayLoop(int[] nums) {
-
-   		boolean currentDirection = false;
-		int slowPtr = 0;
-		int fastPtr = 0;
 		for (int i = 0; i<nums.length; i++) {
-			if(nums[i] %nums.length == 0)
+			if(nums[i] % nums.length == 0)
 			    continue;
-			if (nums[i] >= 0) {
-				currentDirection = true;
-			}
-			else
-			    currentDirection = false;
-			slowPtr = i;
-			fastPtr = i;
+			boolean currentDirection = nums[i] >=0;
+			int slowPtr = i;
+			int fastPtr = i;
 
 			while (slowPtr != fastPtr || slowPtr != -1 || fastPtr != -1) {
 				slowPtr = nextStep(nums, slowPtr, currentDirection);
