@@ -11,7 +11,6 @@
 class Solution {
     public ListNode reverseEvenLengthGroups(ListNode head) {
         ListNode prev = head; // Node immediately before the current group
-		ListNode curr, prevNext = null;
 		int l = 2; // The head doesn't need to be reversed since it's a group of one node, so starts with length 2
 		while(prev.next != null)
 		{
@@ -29,14 +28,14 @@ class Solution {
 			else 
 			{
 				ListNode reverse = node.next;
-				curr = prev.next;
+				ListNode curr = prev.next;
                 for(int j=0; j < n;j++){
                     ListNode nodeNext = curr.next;
 				    curr.next = reverse;
 				    reverse = curr;
 				    curr = nodeNext;
                 }
-                prevNext = prev.next;
+                ListNode prevNext = prev.next;
 				prev.next = node;
 			    prev = prevNext;
 			}
