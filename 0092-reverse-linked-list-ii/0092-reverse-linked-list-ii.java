@@ -58,15 +58,9 @@ class Solution {
 
         }
 
-
-        // We will reverse head if there are node before the [left-right]
-        // position interval
         if (previous != null)
             return head;
-        // We will simply return the reverse head if there is no node
-        // before the [left-right] position interval
-        else
-            return reverseHead;
+        return reverseHead;
 
     }
 }
