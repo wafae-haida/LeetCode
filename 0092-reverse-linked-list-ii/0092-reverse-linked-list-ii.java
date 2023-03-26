@@ -9,7 +9,7 @@
  * }
  */
 class Solution {
-       public ListNode reverse(ListNode head, int left, int right) {
+      public static ListNode reverse(ListNode head, int left, int right) {
         ListNode pre = null;
         ListNode cur = head; 
         while (right >= left) {
@@ -22,14 +22,12 @@ class Solution {
         return pre;
     }
 
-    public ListNode reverseBetween(ListNode head, int left, int right) {
-        ListNode ptr = head; // a pointer to traverse the original list.
-        // a pointer to keep the track of previous node
+    public static ListNode reverseBetween(ListNode head, int left, int right) {
+        ListNode ptr = head; 
         ListNode nextNode = null;
         ListNode previous = null;
         ListNode reverseHead = null;
         ListNode rightNode = null;
-        // Keep traversing until left and right node number
         int count = 1;
         // Move the ptr to the left number node
         while (count < left && ptr != null){
