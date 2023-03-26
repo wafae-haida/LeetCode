@@ -47,7 +47,7 @@ class Solution {
 
             if (previous != null)
                 previous.next = reverseHead;
-
+            
             if (nextNode != null) {
                 ListNode tmp = reverseHead;
                 while (tmp.next != null) {
@@ -55,12 +55,11 @@ class Solution {
                 }
                 tmp.next = nextNode;
             }
-
         }
 
-        if (previous != null)
-            return head;
-        return reverseHead;
+        if (previous == null)
+            return reverseHead;
+        return head;
 
     }
 }
