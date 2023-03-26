@@ -22,8 +22,9 @@ class Solution {
         }
         
         ListNode cur = slow.next;
-        ListNode pre = null;
         slow.next = null;
+        ListNode pre = null;
+        
         while(cur != null){
             ListNode frwd = cur.next;
             cur.next = pre;
@@ -33,6 +34,7 @@ class Solution {
           
         ListNode p1 = head;
         ListNode p2 = pre;
+        
         while(p2 != null) {
             ListNode temp1 = p1.next;
             ListNode temp2 = p2.next;
@@ -41,7 +43,5 @@ class Solution {
             p1 = temp1;
             p2 = temp2;
         }
-            
-        
     }
 }
