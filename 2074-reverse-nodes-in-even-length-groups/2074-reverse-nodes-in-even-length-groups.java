@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode reverseEvenLengthGroups(ListNode head) {
-      ListNode prev = head; // Node immediately before the current group
+        ListNode prev = head; // Node immediately before the current group
 		ListNode node, reverse, nodeNext, curr, prevNext = null;
 		int l = 2; // The head doesn't need to be reversed since it's a group of one node, so starts with length 2
 		int n = 0;
