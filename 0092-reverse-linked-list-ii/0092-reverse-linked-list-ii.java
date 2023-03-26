@@ -10,26 +10,16 @@
  */
 class Solution {
        public ListNode reverse(ListNode head, int left, int right) {
-        ListNode revHead = null;
-        ListNode ptr = head; // a pointer to traverse the original list.
+        ListNode pre = null;
+        ListNode cur = head; 
         while (right >= left) {
-            // Track the next node to traverse in the original list
-            ListNode next = ptr.next;
-
-            // At the beginning of the reversed list,
-            // insert the node pointed to by `ptr`
-            ptr.next = revHead;
-            revHead = ptr;
-
-            // Move on to the next node
-            ptr = next;
-
-            // Decrement the count of nodes to be reversed by 1
-            right -= 1;
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+            right--;
         }
-
-        // Return reversed list's head
-        return revHead;
+        return pre;
     }
 
     public ListNode reverseBetween(ListNode head, int left, int right) {
