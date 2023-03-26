@@ -23,35 +23,32 @@ class Solution {
     }
 
     public static ListNode reverseBetween(ListNode head, int left, int right) {
-        ListNode ptr = head; 
+        ListNode cur = head; 
         ListNode nextNode = null;
         ListNode previous = null;
         ListNode reverseHead = null;
         ListNode rightNode = null;
         int count = 1;
-        // Move the ptr to the left number node
-        while (count < left && ptr != null){
-            previous = ptr; // keep track of the previous node
-            ptr = ptr.next;
-            count += 1;
+        while (count < left && cur != null){
+            previous = cur;
+            cur = cur.next;
+            count++;
         }
         
-        if (ptr != null) {
-            // keep track of the next node outside the [left - right] 
-            // interval
-            nextNode = ptr;
+        if (cur != null) {
+            nextNode = cur;
             while (count <= right && nextNode != null) {
                 // keep track of the right number node
                 rightNode = nextNode;
                 nextNode = nextNode.next;
-                count += 1;
+                count++;
             }
             // If we have found the left till right nodes, then we 
             // reverse them.
             if (rightNode != null) {
                 // Reverse these [left-right] nodes and get the new head
                 //  of the reversed list
-                reverseHead = reverse(ptr, left, right);
+                reverseHead = reverse(cur, left, right);
             }
 
             if (previous != null) {
