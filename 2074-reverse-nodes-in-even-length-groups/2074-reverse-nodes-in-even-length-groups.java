@@ -10,23 +10,20 @@
  */
 class Solution {
     public ListNode reverseEvenLengthGroups(ListNode head) {
-        ListNode prev = head; // Node immediately before the current group
-		int l = 2; // The head doesn't need to be reversed since it's a group of one node, so starts with length 2
-		while(prev.next != null)
-		{
+        ListNode prev = head; 
+		int len = 2; 
+		while(prev.next != null){
 			ListNode node = prev;
-			int n = 0;
-			for (int i = 0; i < l; i ++)
-			{
+            int n =0;
+			for (int i = 0; i < len; i ++){
 				if(node.next == null)
                     break;
-				n += 1;
 				node=node.next;
+                n++;
 			}
-			if(n % 2 != 0) // odd length
+			if(n % 2 != 0)
 			   prev = node; 
-			else 
-			{
+			else{
 				ListNode reverse = node.next;
 				ListNode curr = prev.next;
                 for(int j=0; j < n;j++){
@@ -39,7 +36,7 @@ class Solution {
 				prev.next = node;
 			    prev = prevNext;
 			}
-			l += 1;
+			len++;
 		}
 	    return head;
     }
