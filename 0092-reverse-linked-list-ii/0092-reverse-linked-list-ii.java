@@ -38,31 +38,21 @@ class Solution {
         if (cur != null) {
             nextNode = cur;
             while (count <= right && nextNode != null) {
-                // keep track of the right number node
                 rightNode = nextNode;
                 nextNode = nextNode.next;
                 count++;
             }
-            // If we have found the left till right nodes, then we 
-            // reverse them.
-            if (rightNode != null) {
-                // Reverse these [left-right] nodes and get the new head
-                //  of the reversed list
+            if (rightNode != null)
                 reverseHead = reverse(cur, left, right);
-            }
 
-            if (previous != null) {
-                // point previous.next to the reversed linked list
+            if (previous != null)
                 previous.next = reverseHead;
-            }
 
             if (nextNode != null) {
-                // traverse in the reversed linked list until the last node
                 ListNode tmp = reverseHead;
                 while (tmp.next != null) {
                     tmp = tmp.next;
                 }
-                // add the next node to the reversed linked list
                 tmp.next = nextNode;
             }
 
