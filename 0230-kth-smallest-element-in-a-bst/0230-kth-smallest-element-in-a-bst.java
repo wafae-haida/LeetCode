@@ -14,16 +14,21 @@
  * }
  */
 class Solution {
+    Queue<Integer> maxheap;
     public int kthSmallest(TreeNode root, int k) {
-        List<Integer> ans=new ArrayList<>();
-        trTreeToList(root,ans);
-        return ans.get(k-1);//0-indexes
+        maxheap = new PriorityQueue<>((a,b)->b-a);
+        traverse(root,k);
+        return maxheap.peek()==null?0:maxheap.poll();
     }
-    public void trTreeToList(TreeNode root, List<Integer> list){
-        if(root==null)
-            return;
-        trTreeToList(root.left,list);
-        list.add(root.val);
-        trTreeToList(root.right,list);
+    public void traverse(TreeNode root, int k){
+      if(root == null)
+        return;
+      maxheap.offer(root.val);
+      if(maxheap.size() > k)
+        maxheap.poll();
+      traverse(root.right,k);
+      traverse(root.left, k);
     }
 }
+
+    
