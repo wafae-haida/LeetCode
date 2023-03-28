@@ -3,22 +3,20 @@ class Pair{
     int costB;
     int difference;
     int index;
-    public Pair(int costA, int costB, int difference, int index){
+    public Pair(int costA, int costB, int index){
         this.costA =costA;
         this.costB = costB;
-        this.difference = difference;
         this.index = index;
     }
     public int getDifference(){
-        return difference;
+        return costA - costB;
     }
 }
 class Solution {
     public int twoCitySchedCost(int[][] costs) {
         Pair[] difference = new Pair[costs.length];
         for(int i = 0 ; i < costs.length ; i++){
-            int df = costs[i][0] - costs[i][1];
-            difference[i] = new Pair(costs[i][0], costs[i][1], df, i);
+            difference[i] = new Pair(costs[i][0], costs[i][1], i);
         }
         Arrays.sort(difference, (a,b)->a.getDifference() - b.getDifference());
         int ans = 0;
