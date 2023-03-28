@@ -5,8 +5,8 @@ class Solution {
             if(position <= (i + nums[i]))
                 position = i;
         }
-    if(position == 0)
-        return true;
-    return false;
+        if(position == 0)
+            return true;
+        return false;
     }
 }
