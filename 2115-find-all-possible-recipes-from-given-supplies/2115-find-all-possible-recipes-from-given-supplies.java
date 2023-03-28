@@ -1,6 +1,6 @@
 class Solution {
-    public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
-       Set<String> seen = new HashSet<>();
+     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
+        Set<String> seen = new HashSet<>();
         for (String sup : supplies) {
             seen.add(sup);
         }
@@ -12,13 +12,13 @@ class Solution {
         int prevSize = seen.size() - 1;
         while (seen.size() > prevSize) {
             prevSize = seen.size();
-            here:
-            for (int sz = 0 ; sz < q.size() ; sz++ ) {
+            mid:
+            for (int sz = q.size(); sz > 0; --sz) {
                 int i = q.poll();
                 for (String ing : ingredients.get(i)) {
                     if (!seen.contains(ing)) {
                         q.offer(i);
-                        continue here;
+                        continue mid;
                     }
                 }
                 seen.add(recipes[i]);
