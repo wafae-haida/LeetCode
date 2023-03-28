@@ -13,7 +13,7 @@ class Solution {
         while (seen.size() > prevSize) {
             prevSize = seen.size();
             here:
-            for (int sz = q.size(); sz > 0; --sz) {
+            for (int sz = 0 ; sz < q.size() ; sz++ ) {
                 int i = q.poll();
                 for (String ing : ingredients.get(i)) {
                     if (!seen.contains(ing)) {
