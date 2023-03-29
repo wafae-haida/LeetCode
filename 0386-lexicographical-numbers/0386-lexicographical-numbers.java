@@ -1,24 +1,16 @@
 class Solution {
     public List<Integer> lexicalOrder(int n) {
-        List<Integer> list = new ArrayList();
-        int len = (int)Math.log10(n);
-        int digit = n/(int)Math.pow(10,len);
-        int i = 1;
-        for(;i<=9;i++){
-            if (i>n) break;
-            list.add(i);
-            helper(i,n,list);
-        }
-
-        return list;
+        List<Integer> ans = new ArrayList<>();
+        dfs(ans, n, 1);
+        return ans;
     }
-
-    private void helper(int i ,int n, List<Integer> list){
-        i *= 10;
-        for(int j=0;j<=9;j++){
-            if (i+j>n) break;
-            list.add(i+j);
-            helper(i+j, n, list);
+    
+    private void dfs(List<Integer> ans, int n, int start) {
+        if (start > n) return; 
+        ans.add(start); 
+        dfs(ans, n, 10*start);
+        if (start % 10 < 9) { 
+            dfs(ans, n, start + 1); 
         }
     }
 }
