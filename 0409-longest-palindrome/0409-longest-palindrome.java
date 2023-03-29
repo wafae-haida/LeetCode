@@ -7,7 +7,7 @@ class Solution {
             else
                 set.add(s.charAt(i));
         }
-        if(set.size() <= 1)
+        if(set.size() < 1)
             return s.length();
         return s.length() - set.size() + 1;
     }
