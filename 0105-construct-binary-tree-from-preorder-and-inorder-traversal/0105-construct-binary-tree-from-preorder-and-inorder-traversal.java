@@ -13,11 +13,7 @@
  *     }
  * }
  */
-/*
-preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
-preorder=root->left->right
-inorder=left->root->right
-*/
+
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if(preorder.length==0 || inorder.length==0)return null;
