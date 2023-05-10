@@ -14,7 +14,6 @@ class Solution {
                 return array($map[$complement],$i);
             $map[$nums[$i]] = $i;
         }
-        return array();
+    return array();
     }
-
 }
