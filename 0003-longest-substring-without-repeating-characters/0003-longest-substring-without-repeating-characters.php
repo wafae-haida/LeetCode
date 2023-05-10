@@ -9,7 +9,7 @@ class Solution {
         $map = array();
         $ans = $i = 0;
         for ($j = 0; $j < $n; $j++) {
-            if (isset($map[$s[$j]])) {
+            if (array_key_exists($s[$j],$map)) {
                 $i = max($map[$s[$j]], $i);
             }
             $ans = max($ans, $j - $i + 1);
